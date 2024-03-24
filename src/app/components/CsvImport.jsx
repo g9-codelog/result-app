@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { readString } from "react-papaparse";
 import { Button, Input } from "@chakra-ui/react";
 import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
-import db from "@/firebase";
+import db from "../../firebase";
 import Link from "next/link";
 
 function CsvImport() {
