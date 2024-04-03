@@ -1,8 +1,8 @@
 "use client";
 
 import { onAuthStateChanged } from "firebase/auth";
-import React, { useContext, useEffect, useState } from "react";
-import { db, auth } from "../firebase";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { auth } from "../firebase";
 
 const AuthContext = React.createContext();
 
@@ -19,9 +19,9 @@ export function AuthProvider({ children }) {
       setLoading(false);
     });
     return unsubscribe;
-  }, []);
+  }, [auth]);
 
-  const value = { currentUser };
+  const value = useMemo(() => ({ currentUser }), [currentUser]);
 
   return (
     <div>

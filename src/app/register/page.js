@@ -1,9 +1,11 @@
 import React from "react";
-import Register from "../components/Register";
+import styles from "../page.module.css";
+
+import Register from "../components/Register/Register";
 
 export default function page() {
   return (
-    <div>
+    <div className={styles.main}>
       <Register></Register>
     </div>
   );

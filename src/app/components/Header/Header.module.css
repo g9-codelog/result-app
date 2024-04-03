@@ -1,0 +1,57 @@
+.header {
+  display: block;
+  background-color: white;
+  border-bottom: solid 2px #eee;
+  display: flex;
+  width: 100%;
+  margin: 0 0 8px;
+  padding: 5px 2px 2px;
+  box-shadow: 0px 1px 4px darkblue;
+}
+
+.header h1 {
+  font-size: 22px;
+  font-family: Arial Black, Helvetica, sans-serif;
+  color: darkblue;
+  margin: auto 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.menuWrapper {
+  display: block;
+  margin: auto 0;
+}
+
+.menu {
+  width: 150px;
+  display: inline-block;
+  border-right: solid #888 1px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.dataBox {
+  margin: auto 0 auto auto;
+}
+
+.accountWrapper {
+  margin-left: 8px;
+  padding: 0 5px;
+  border-left: solid #eee 2px;
+}
+
+.account {
+  color: #888;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.account button {
+  margin-right: 5px;
+  padding: 1px 2px;
+  background-color: white;
+  border-radius: 2px;
+  color: #888;
+  border: solid #888 1px;
+}

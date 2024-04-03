@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { readString } from "react-papaparse";
 import { Button, Input } from "@chakra-ui/react";
 import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
-import db from "../../firebase";
+import { db } from "../../firebase";
 import Link from "next/link";
 
 function CsvImport() {
@@ -143,6 +143,8 @@ function CsvImport() {
       <Link href="/">戻る</Link>
       <div {...getRootProps()}>
         <input {...getInputProps()} />
+      </div>
+      <div>
         {isDragActive ? (
           <p>Drop the files here ...</p>
         ) : (
@@ -157,9 +159,9 @@ function CsvImport() {
               value={documentId}
               onChange={(e) => setDocumentId(e.target.value)}
             />
-            <dev>
+            <div {...getRootProps()}>
               <Button>ファイルを選択</Button>
-            </dev>
+            </div>
             <p>or drag and drop a file</p>
           </>
         )}

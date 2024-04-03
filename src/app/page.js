@@ -1,15 +1,20 @@
+"use client";
 import styles from "./page.module.css";
-import DataBox from "./components/DataBox";
-import Header from "./components/Header";
-import { AuthProvider } from "../app/AuthProvider";
+import Header from "./components/Header/Header";
+import { useState } from "react";
+import { AuthProvider } from "./AuthProvider";
 
 export default function Home() {
+  const [yearSelect, setYearSelect] = useState("");
+  const [nameList, setNameList] = useState([]);
+
   return (
     <main className={styles.main}>
-      <AuthProvider>
-        <Header></Header>
-        <DataBox></DataBox>
-      </AuthProvider>
+      <Header
+        setYear={setYearSelect}
+        setName={setNameList}
+        yearSelect={yearSelect}
+      />
     </main>
   );
 }

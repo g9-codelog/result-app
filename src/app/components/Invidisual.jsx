@@ -1,6 +1,6 @@
 "use client";
 import { db } from "../../firebase";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   collection,
   getDocs,
@@ -19,7 +19,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Line, getElementAtEvent, getElementsAtEvent } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -30,6 +30,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
 function Sample({ nameList, dataLabel, yearSelect }) {
   const [uploads, setUploads] = useState([]);
   const labels = dataLabel;
@@ -58,6 +59,12 @@ function Sample({ nameList, dataLabel, yearSelect }) {
       }
     }
   }, [selectName]);
+
+  const charRef = useRef();
+  function ComentSet(e) {
+    const dataIndex = getElementAtEvent(charRef.current, e)[0].index;
+    console.log(labels[dataIndex]);
+  }
 
   const graphData = {
     labels: labels,
@@ -214,6 +221,7 @@ function Sample({ nameList, dataLabel, yearSelect }) {
       },
     ],
   };
+
   return (
     <div>
       <select
@@ -225,7 +233,14 @@ function Sample({ nameList, dataLabel, yearSelect }) {
           return <option key={name}>{name}</option>;
         })}
       </select>
-      <Line height={10} width={25} data={graphData} id="chart-key" />
+      <Line
+        ref={charRef}
+        height={10}
+        width={25}
+        data={graphData}
+        id="chart-key"
+        // onClick={(e) => ComentSet(e)}
+      />
     </div>
   );
 }
