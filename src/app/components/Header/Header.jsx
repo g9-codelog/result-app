@@ -5,6 +5,7 @@ import { getAuth, signOut } from "firebase/auth";
 import Login from "../Login/Login";
 import Link from "next/link";
 import DataBox from "../DataBox";
+import { YearSelectProvider } from "../../YeasrSelectProvider";
 import { useAuth } from "../../AuthProvider";
 
 const Header = React.memo(({ setYear, setName, yearSelect }) => {
@@ -30,9 +31,18 @@ const Header = React.memo(({ setYear, setName, yearSelect }) => {
         <Link href="/subjectAverage" className={styles.menu}>
           平均偏差値推移
         </Link>
+        <Link href="/ComparisonPreYears" className={styles.menu}>
+          過年度比較
+        </Link>
       </div>
       <div className={styles.dataBox}>
-        <DataBox setYear={setYear} setName={setName} yearSelect={yearSelect} />
+        <YearSelectProvider>
+          <DataBox
+            setYear={setYear}
+            setName={setName}
+            yearSelect={yearSelect}
+          />
+        </YearSelectProvider>
       </div>
       <div className={styles.accountWrapper}>
         {currentUser ? (

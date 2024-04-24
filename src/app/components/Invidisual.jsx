@@ -31,34 +31,53 @@ ChartJS.register(
   Legend
 );
 
-function Sample({ nameList, dataLabel, yearSelect }) {
+function InvidisualCopy({ nameList, dataLabel, yearSelect }) {
   const [uploads, setUploads] = useState([]);
   const labels = dataLabel;
-  const [selectName, setSelectName] = useState("");
-
+  const [results, setResults] = useState([]);
   useEffect(() => {
     let dummyArray = [];
     //データベースからデータを取得する。
-    if (yearSelect === "") {
-      return;
-    } else {
-      for (let i = 0; i < dataLabel.length; i++) {
-        getDocs(collection(db, yearSelect, dataLabel[i], `${selectName}`)).then(
-          (snap) => {
+    async function fechData() {
+      if (yearSelect === "") {
+        return;
+      } else {
+        for (let i = 0; i < dataLabel.length; i++) {
+          await getDocs(
+            collection(db, "全統模試結果", yearSelect, dataLabel[i])
+          ).then((snap) => {
             if (snap.docs.length > 0) {
               dummyArray = [
                 ...dummyArray,
-                ...snap.docs.map((dd) => ({ ...dd.data(), id: dd.id })),
+                snap.docs.map((dd) => ({ ...dd.data(), id: dataLabel[i] })),
               ];
             } else {
               dummyArray = [...dummyArray, ""];
             }
-            setUploads(dummyArray);
-          }
-        );
+          });
+        }
       }
+      setResults(dummyArray);
     }
-  }, [selectName]);
+    fechData();
+  }, [yearSelect]);
+
+  function handleResultShow(name) {
+    let resultArray = [];
+    for (let i = 0; i < dataLabel.length; i++) {
+      if (results[i].length > 0) {
+        const searchName = results[i].find((result) => result.name === name);
+        if (searchName) {
+          resultArray = [...resultArray, searchName];
+        } else {
+          resultArray = [...resultArray, ""];
+        }
+      } else {
+        resultArray = [...resultArray, ""];
+      }
+      setUploads(resultArray);
+    }
+  }
 
   const charRef = useRef();
   function ComentSet(e) {
@@ -225,8 +244,8 @@ function Sample({ nameList, dataLabel, yearSelect }) {
   return (
     <div>
       <select
-        value={selectName}
-        onChange={(e) => setSelectName(e.target.value)}
+        // value={selectName}
+        onChange={(e) => handleResultShow(e.target.value)}
         name="selectName"
       >
         {nameList.map((name) => {
@@ -245,4 +264,4 @@ function Sample({ nameList, dataLabel, yearSelect }) {
   );
 }
 
-export default Sample;
+export default InvidisualCopy;

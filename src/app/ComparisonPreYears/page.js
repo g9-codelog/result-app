@@ -1,9 +1,9 @@
 "use client";
 import styles from "../page.module.css";
 import Header from "../components/Header/Header";
-import SubjectAve from "../components/SubjectAve";
 import { useState } from "react";
-
+import ComparisonPreYears from "../components/ComparisonPreYears/ComparisonPreYears";
+import { YearSelectProvider } from "../YeasrSelectProvider";
 export default function Home() {
   const [yearSelect, setYearSelect] = useState("");
   const [nameList, setNameList] = useState([]);
@@ -21,6 +21,7 @@ export default function Home() {
     "高3第3回共テ",
     "高3全統プレ",
   ];
+
   return (
     <main className={styles.main}>
       <Header
@@ -28,11 +29,13 @@ export default function Home() {
         setName={setNameList}
         yearSelect={yearSelect}
       />
-      <SubjectAve
-        nameList={nameList}
-        dataLabel={dataLabel}
-        yearSelect={yearSelect}
-      />
+      <YearSelectProvider>
+        <ComparisonPreYears
+          nameList={nameList}
+          dataLabel={dataLabel}
+          yearSelect={yearSelect}
+        />
+      </YearSelectProvider>
     </main>
   );
 }
