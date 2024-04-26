@@ -91,8 +91,8 @@ function InvidisualCopy({ nameList, dataLabel, yearSelect }) {
       {
         label: "英語",
         data: uploads.map((upload) => upload.EnDev),
-        borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgb(90, 90, 90)",
+        backgroundColor: "rgba(90, 90, 90, 0.2)",
       },
       {
         label: "数学",
