@@ -259,7 +259,7 @@ export default function SubjectAveCopy({ nameList, dataLabel, yearSelect }) {
   };
 
   return (
-    <div>
+    <div style={{ width: "90%", margin: "0 auto" }}>
       <Line
         // ref={charRef}
         height={10}

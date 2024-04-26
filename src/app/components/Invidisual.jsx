@@ -242,7 +242,7 @@ function InvidisualCopy({ nameList, dataLabel, yearSelect }) {
   };
 
   return (
-    <div>
+    <div style={{ width: "90%", margin: "0 auto" }}>
       <select
         // value={selectName}
         onChange={(e) => handleResultShow(e.target.value)}

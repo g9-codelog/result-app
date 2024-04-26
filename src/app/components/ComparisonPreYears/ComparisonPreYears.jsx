@@ -26,7 +26,7 @@ ChartJS.register(
   Legend
 );
 
-const ComparisonPreYears = ({ nameList, dataLabel, yearSelect }) => {
+const ComparisonPreYearsCopy = ({ nameList, dataLabel, yearSelect }) => {
   const labels = dataLabel;
 
   const SubjectSets = [
@@ -192,9 +192,14 @@ const ComparisonPreYears = ({ nameList, dataLabel, yearSelect }) => {
   }, [yearSelect]);
 
   function resultShow(subject) {
+    let dummySubjectAve = [];
     for (let i = 0; i < results.length; i++) {
-      let dummySubjectAve = { year: yearSelects[i] };
+      let SubjectAve = 0;
       for (let j = 0; j < labels.length; j++) {
+        if (i === 0) {
+          dummySubjectAve.push({ id: labels[j] });
+        }
+
         if (results[i].length !== 0 && results[i][j].length !== 0) {
           let numLength = 0;
           const SumSubject = results[i][j].reduce((acc, num) => {
@@ -204,24 +209,12 @@ const ComparisonPreYears = ({ nameList, dataLabel, yearSelect }) => {
             }
             return acc;
           }, 0);
-          const SubjectAve = SumSubject / numLength;
-          dummySubjectAve[labels[j]] = SubjectAve;
+          SubjectAve = SumSubject / numLength;
+          dummySubjectAve[j][yearSelects[i]] = SubjectAve;
         }
       }
-      YearsAveArray.push(dummySubjectAve);
+      setGraphDataArray(dummySubjectAve);
     }
-
-    let dummyGraphDataArray = [];
-    for (let i = 0; i < labels.length; i++) {
-      let dummyGraphData = { id: labels[i] };
-      for (let j = 0; j < YearsAveArray.length; j++) {
-        if (YearsAveArray[j][labels[i]]) {
-          dummyGraphData[YearsAveArray[j].year] = YearsAveArray[j][labels[i]];
-        }
-      }
-      dummyGraphDataArray.push(dummyGraphData);
-    }
-    setGraphDataArray(dummyGraphDataArray);
   }
 
   const graphData = {
@@ -237,9 +230,15 @@ const ComparisonPreYears = ({ nameList, dataLabel, yearSelect }) => {
   };
 
   return (
-    <div>
+    <div style={{ width: "90%", margin: "0 auto" }}>
       <div
-        style={{ border: "solid 2px", borderColor: "#ccc", padding: "2px 0" }}
+        style={{
+          border: "solid 2px",
+          borderColor: "#ccc",
+          padding: "2px 0",
+          paddingLeft: "4px",
+          paddingRight: "0",
+        }}
       >
         {SubjectSets.map((subject) => {
           return (
@@ -274,4 +273,4 @@ const ComparisonPreYears = ({ nameList, dataLabel, yearSelect }) => {
   );
 };
 
-export default ComparisonPreYears;
+export default ComparisonPreYearsCopy;
