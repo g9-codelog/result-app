@@ -26,7 +26,7 @@ ChartJS.register(
   Legend
 );
 
-const ComparisonPreYearsCopy = ({ nameList, dataLabel, yearSelect }) => {
+const ComparisonPreYears = ({ nameList, dataLabel, yearSelect }) => {
   const labels = dataLabel;
 
   const SubjectSets = [
@@ -273,4 +273,4 @@ const ComparisonPreYearsCopy = ({ nameList, dataLabel, yearSelect }) => {
   );
 };
 
-export default ComparisonPreYearsCopy;
+export default ComparisonPreYears;

@@ -31,7 +31,7 @@ ChartJS.register(
   Legend
 );
 
-function InvidisualCopy({ nameList, dataLabel, yearSelect }) {
+function Invidisual({ nameList, dataLabel, yearSelect }) {
   const [uploads, setUploads] = useState([]);
   const labels = dataLabel;
   const [results, setResults] = useState([]);
@@ -264,4 +264,4 @@ function InvidisualCopy({ nameList, dataLabel, yearSelect }) {
   );
 }
 
-export default InvidisualCopy;
+export default Invidisual;

@@ -25,7 +25,7 @@ ChartJS.register(
   Legend
 );
 
-export default function SubjectAveCopy({ nameList, dataLabel, yearSelect }) {
+export default function SubjectAve({ nameList, dataLabel, yearSelect }) {
   const labels = dataLabel;
 
   const SubjectColor = {

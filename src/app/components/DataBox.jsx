@@ -4,7 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { YearSelectContext } from "../YeasrSelectProvider";
 
-const DataBoxCopy = ({ setYear, setName, yearSelect }) => {
+const DataBox = ({ setYear, setName, yearSelect }) => {
   const { yearSelects } = useContext(YearSelectContext);
 
   const handleDataRead = useCallback(() => {
@@ -40,4 +40,4 @@ const DataBoxCopy = ({ setYear, setName, yearSelect }) => {
   );
 };
 
-export default DataBoxCopy;
+export default DataBox;
