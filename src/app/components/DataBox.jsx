@@ -9,7 +9,7 @@ const DataBox = ({ setYear, setName, yearSelect }) => {
 
   const handleDataRead = useCallback(() => {
     let dummyArray = [];
-    if (yearSelect) {
+    if (yearSelect && setName) {
       getDocs(collection(db, "全統模試結果", yearSelect, "名前")).then(
         (snap) => {
           dummyArray = snap.docs.map((dd) => dd.data());

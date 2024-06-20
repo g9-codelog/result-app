@@ -3,27 +3,42 @@
 import React, { useState } from "react";
 import styles from "./Register.module.css";
 import { db } from "../../../firebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import Link from "next/link";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function doRegistter() {
-    if (password === process.env.NEXT_PUBLIC_PASS) {
-      const auth = getAuth();
+  async function doRegistter() {
+    //   if (password === process.env.NEXT_PUBLIC_PASS) {
+    //     const auth = getAuth();
 
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          alert("完了");
-          console.log(user);
-        })
-        .catch((error) => console.log(error));
-    } else {
-      alert("パスワードが違います");
-    }
+    //     createUserWithEmailAndPassword(auth, email, password)
+    //       .then((userCredential) => {
+    //         const user = userCredential.user;
+    //         alert("完了");
+    //         console.log(user);
+    //       })
+    //       .catch((error) => console.log(error));
+    //   } else {
+    //     alert("パスワードが違います");
+    //   }
+    const auth = getAuth();
+
+    const userCreadential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCreadential.user;
+    await sendEmailVerification(user);
+    alert("確認メールが送信されました");
+    console.log(user.emailVerified);
   }
   return (
     <div className={styles.wrapper}>
