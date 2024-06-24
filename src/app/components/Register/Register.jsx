@@ -16,6 +16,10 @@ const Register = () => {
   const [secondPassword, setSecondPassword] = useState("");
   async function doRegistter() {
     try {
+      if (password.length < 6) {
+        alert("パスワードは6文字以上で設定してください");
+        return;
+      }
       if (password === "" || secondPassword === "") {
         alert("入力事項を確認してください");
       } else {
@@ -30,7 +34,6 @@ const Register = () => {
           const user = userCreadential.user;
           await sendEmailVerification(user);
           alert("確認メールが送信されました");
-          console.log(user.emailVerified);
         } else {
           alert("パスワードが一致しません");
         }
