@@ -22,16 +22,16 @@ export default function middleware(req: NextRequest) {
     }
   }
 
-  let ip: string = req.ip ?? req.headers.get("x-real-ip") ?? "";
+  // let ip: string = req.ip ?? req.headers.get("x-real-ip") ?? "";
 
-  if (!ip) {
-    const forwardedFor = req.headers.get("x-forwarded-for");
-    ip = forwardedFor.split(",").at(0) ?? "Unknown";
-  }
+  // if (!ip) {
+  //   const forwardedFor = req.headers.get("x-forwarded-for");
+  //   ip = forwardedFor.split(",").at(0) ?? "Unknown";
+  // }
 
-  if (!IP_WHITELIST.includes(ip)) {
-    return NextResponse.redirect("https://google.jp");
-  }
+  // if (!IP_WHITELIST.includes(ip)) {
+  //   return NextResponse.redirect("https://google.jp");
+  // }
 
   return new NextResponse("Unauthorized.", {
     status: 401,

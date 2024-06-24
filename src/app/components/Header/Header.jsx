@@ -13,7 +13,6 @@ const Header = React.memo(({ setYear, setName, yearSelect }) => {
   let verified;
   if (currentUser) {
     verified = currentUser.emailVerified;
-    console.log(verified);
   }
   function doLogout() {
     const auth = getAuth();

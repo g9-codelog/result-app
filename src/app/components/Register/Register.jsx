@@ -13,32 +13,31 @@ import Link from "next/link";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [secondPassword, setSecondPassword] = useState("");
   async function doRegistter() {
-    //   if (password === process.env.NEXT_PUBLIC_PASS) {
-    //     const auth = getAuth();
+    try {
+      if (password === "" || secondPassword === "") {
+        alert("入力事項を確認してください");
+      } else {
+        if (password === secondPassword) {
+          const auth = getAuth();
 
-    //     createUserWithEmailAndPassword(auth, email, password)
-    //       .then((userCredential) => {
-    //         const user = userCredential.user;
-    //         alert("完了");
-    //         console.log(user);
-    //       })
-    //       .catch((error) => console.log(error));
-    //   } else {
-    //     alert("パスワードが違います");
-    //   }
-    const auth = getAuth();
-
-    const userCreadential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const user = userCreadential.user;
-    await sendEmailVerification(user);
-    alert("確認メールが送信されました");
-    console.log(user.emailVerified);
+          const userCreadential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+          const user = userCreadential.user;
+          await sendEmailVerification(user);
+          alert("確認メールが送信されました");
+          console.log(user.emailVerified);
+        } else {
+          alert("パスワードが一致しません");
+        }
+      }
+    } catch {
+      alert("エラーです");
+    }
   }
   return (
     <div className={styles.wrapper}>
@@ -47,18 +46,22 @@ const Register = () => {
 
         <form>
           <p>Email</p>
-
           <input
             type="email"
             name="email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <p>password</p>
-
           <input
             type="password"
             name="password"
             onChange={(e) => setPassword(e.target.value)}
+          />{" "}
+          <p>password（確認）</p>
+          <input
+            type="password"
+            name="password"
+            onChange={(e) => setSecondPassword(e.target.value)}
           />
         </form>
         <button onClick={doRegistter}>登録</button>

@@ -39,9 +39,11 @@ export default function Login() {
           />
         </form>
         <button onClick={() => doLogin()}>ログイン</button>
-        <Link href="/register" className={styles.link}>
-          新規登録
-        </Link>
+        <div className={styles.link}>
+          <Link href="/register">新規登録</Link>
+          <br />
+          <Link href="/ResetPass">パスワードを忘れた</Link>
+        </div>
       </div>
     </div>
   );
