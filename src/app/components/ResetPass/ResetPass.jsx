@@ -15,11 +15,7 @@ const ResetPass = () => {
 
   async function doRegistter() {
     const auth = getAuth();
-    const actionCodeSettings = {
-      url: "https://result-app-nine.vercel.app/",
-      handleCodeInApp: false,
-    };
-    sendPasswordResetEmail(auth, email, actionCodeSettings)
+    sendPasswordResetEmail(auth, email)
       .then(() => {
         alert("メールが送信されました");
       })
@@ -32,9 +28,7 @@ const ResetPass = () => {
       <div className={styles.reset}>
         <h1>パスワードの再設定</h1>
         <p className={styles.explanatory}>
-          入力されたメールアドレスにパスワードを再設定
-          <br />
-          するページのURLを送信します
+          入力されたメールアドレスにパスワードを再設定するページのURLを送信します
         </p>
 
         <form>
